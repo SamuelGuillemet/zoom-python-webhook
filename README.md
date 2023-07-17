@@ -56,7 +56,7 @@ You can install Poetry using the following command:
 **Linux or Mac:**
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+$ curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 **Windows:**
@@ -69,28 +69,50 @@ Source: https://python-poetry.org/docs/#installing-with-the-official-installer
 
 Then, you can install the dependencies with the following command:
 
+#### Virtual env if you use Conda
+
+Start the conda env:
+
 ```bash
-poetry install
+$ conda activate your_env
+```
+
+Create a virtual env under the `.venv` folder:
+
+```bash
+$ python -m venv .venv
+```
+
+Deactivate the conda env:
+
+```bash
+$ conda deactivate
+```
+
+#### Install the dependencies
+
+```bash
+$ poetry install
 ```
 
 Activate the virtual env:
 
 ```bash
-source .venv/bin/activate
+$ source .venv/bin/activate
 ```
 
 #### Install the pre-commit Git hook
 
 ```bash
-pre-commit install
+$ pre-commit install
 ```
 
 #### Run the app
 
-Then, you can run the app with the following command:
+Then, you can run the app with the following command from the root folder:
 
 ```bash
-uvicorn src.app.main:app --reload --reload-dir=./src/app
+$ uvicorn src.app.main:app --reload --reload-dir=./src/app
 ```
 
 ## Supported events
