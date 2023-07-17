@@ -1,0 +1,15 @@
+version: "3"
+
+name: zoom-python-webhook
+
+services:
+  backend:
+    container_name: zoom-python-webhook-backend
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - ZOOM_WEBHOOK_SECRET_TOKEN=${ZOOM_WEBHOOK_SECRET_TOKEN}
+    ports:
+      - 8080:8080

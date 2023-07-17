@@ -1,0 +1,8 @@
+version: "3"
+
+name: zoom-python-webhook_harbor
+
+services:
+  backend:
+    container_name: fastapi
+    image: registry.cern.ch/zoom-python-webhook/zoom-python-webhook-backend:${tag:-latest}

@@ -1,0 +1,7 @@
+version: "3"
+
+name: zoom-python-webhook_github
+
+services:
+  backend:
+    image: ghcr.io/samuelguillemet/zoom-python-webhook-backend:${tag:-latest}

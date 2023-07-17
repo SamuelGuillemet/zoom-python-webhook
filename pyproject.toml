@@ -1,15 +1,16 @@
 [tool.poetry]
-name = "Fast API app for Zoom Webhook"
+name = "zoom-python-webhook"
 version = "0.1.0"
-description = ""
+description = "Fast API app for Zoom Webhook"
 authors = ["Samuel Guillemet <samuel.guillemet@telecom-sudparis.eu>"]
 readme = "README.md"
-# packages = [{include = "app", from = "src"}]
+packages = [{include = "app", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = {extras = ["all"], version = "^0.100.0"}
 pydantic-settings = "^2.0.1"
+pytz = "^2023.3"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -30,3 +31,13 @@ httpx = "^0.24.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/SamuelGuillemet/zoom-python-webhook/issues"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+no_strict_optional = true
+ignore_missing_imports = true
