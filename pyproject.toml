@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "Fast API app for Zoom Webhook"
+name = "zoom-python-webhook"
 version = "0.1.0"
-description = ""
+description = "Fast API app for Zoom Webhook"
 authors = ["Samuel Guillemet <samuel.guillemet@telecom-sudparis.eu>"]
 readme = "README.md"
-# packages = [{include = "app", from = "src"}]
+packages = [{include = "app", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
