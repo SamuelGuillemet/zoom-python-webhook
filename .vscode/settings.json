@@ -1,0 +1,62 @@
+{
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.indexing": true,
+  "python.analysis.packageIndexDepths": [
+    {
+      "name": "fastapi",
+      "depth": 2
+    },
+    {
+      "name": "pydantic",
+      "depth": 2
+    },
+    {
+      "name": "pytest",
+      "depth": 2
+    },
+    {
+      "name": "unittest",
+      "depth": 2
+    }
+  ],
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.inlayHints.callArgumentNames": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.autoComplete.extraPaths": [
+    "./src"
+  ],
+  "editor.formatOnSave": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintPath": ".venv/bin/pylint",
+  "python.linting.pylintArgs": [
+    "--load-plugins",
+    "pylint_pydantic"
+  ],
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "${workspaceFolder}"
+  },
+  "search.exclude": {
+    "**/dist": true,
+    "**/.venv": true
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "black",
+  "files.exclude": {
+    "**/__pycache__": true,
+    ".pytest_cache": true,
+    ".mypy*": true,
+    ".coverage": true,
+  },
+  "python.testing.pytestEnabled": true,
+  // "python.testing.pytestArgs": [
+  //   "--"
+  // ],
+  "python.analysis.extraPaths": [
+    "./src"
+  ],
+}

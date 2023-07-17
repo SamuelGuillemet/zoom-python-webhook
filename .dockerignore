@@ -1,0 +1,13 @@
+*
+!/src/**/*
+!poetry.lock
+!pyproject.toml
+**/__pycache__/
+
+# Use this to test what will be included in backend :
+# docker build --no-cache --progress plain --file - . <<EOF
+# FROM busybox
+# COPY ./src/app /build-context/app
+# WORKDIR /build-context
+# RUN find .
+# EOF
