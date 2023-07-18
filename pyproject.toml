@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zoom-python-webhook"
-version = "0.1.1"
+version = "0.1.2"
 description = "Fast API app for Zoom Webhook"
 authors = ["Samuel Guillemet <samuel.guillemet@telecom-sudparis.eu>"]
 readme = "README.md"
