@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zoom-python-webhook"
-version = "0.1.0"
+version = "0.1.1"
 description = "Fast API app for Zoom Webhook"
 authors = ["Samuel Guillemet <samuel.guillemet@telecom-sudparis.eu>"]
 readme = "README.md"
@@ -9,7 +9,7 @@ packages = [{include = "app", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = {extras = ["all"], version = "^0.100.0"}
-pydantic-settings = "^2.0.1"
+pydantic-settings = "^2.0.2"
 pytz = "^2023.3"
 
 
@@ -23,7 +23,7 @@ mypy-extensions = "^1.0.0"
 pylint = "^2.17.4"
 pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
-pylint-pydantic = "^0.2.0"
+pylint-pydantic = "^0.2.2"
 pytest-env = "^0.8.2"
 pytest-asyncio = "^0.21.1"
 httpx = "^0.24.1"
