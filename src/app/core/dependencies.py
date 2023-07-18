@@ -45,11 +45,11 @@ async def verify_webhook_signature(
 
     # validate the request came from Zoom
     if x_zm_signature != signature:
-        logger.error("Invalid signature: %s != %s", x_zm_signature, signature)
+        logger.warning("Invalid signature: %s != %s", x_zm_signature, signature)
         raise HTTPException(
             status_code=403,
             detail="Invalid signature.",
         )
 
     BaseWebhookEvent.model_validate(body)
-    logger.info("Signature verified.")
+    logger.debug("Signature verified.")
