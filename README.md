@@ -136,6 +136,8 @@ $ uvicorn src.app.main:app --reload --reload-dir=./src/app
 3. In the `handler.py` file, you should create a new function that will handle the event. The function should be take the following arguments:
    - body (dict): The body of the request
 4. In the `schema.py` file, you should create 2 new Pydantic models that will be used to validate the body of the request and the response of the handler function.
+   - The first model should be used to validate the body of the request.
+   - The second model should be used to validate the response of the handler function.
 5. In the `__init__.py` file, you must have the following code:
 
 ```python
@@ -147,22 +149,4 @@ handler_function = your_handler_function
 response_model = YourResponseSchema
 ```
 
-6. In the `src/app/api/v1/endpoints/webhook.py` file, you should import the component and add it to the route :
-
-```Python
-from app.components import (
-    your_component,
-)
-
-ResponseModel = Union[
-    ...,
-    your_component.response_model,
-]
-
-@webhook_handler(
-    event_name=your_component.event_name,
-    handler=your_component.handler_function,
-)
-async def webhook_route(webhook_event: BaseWebhookEvent):
-    ...
-```
+6. All the components arle loaded dynamically in the `src/app/api/v1/endpoints/webhook.py` file.
