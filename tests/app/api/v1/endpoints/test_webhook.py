@@ -10,60 +10,7 @@ async def override_verify_webhook_signature():
     pass
 
 
-url_validation_body = {
-    "payload": {"plainToken": "q9ibPhGeRZ6ayx5WTrXjRw"},
-    "event_ts": 1689061099652,
-    "event": "endpoint.url_validation",
-}
-
-checked_in_body = {
-    "event": "zoomroom.checked_in",
-    "event_ts": 1626230691572,
-    "payload": {
-        "account_id": "AAAAAABBBB",
-        "object": {
-            "id": "abcD3ojfdbjfg",
-            "room_name": "My Zoom Room",
-            "calendar_name": "mycalendar@example.com",
-            "email": "jchill@example.com",
-            "event_id": "AbbbbbGYxLTc3OTVkMzFmZDc0MwBGAAAAAAD48FI58voYSqDgJePOSZ",
-            "change_key": "DwAAABYAAABQ/N0JvB/FRqv5UT2rFfkVAAE2XqVw",
-            "resource_email": "zroom1@example.com",
-            "calendar_id": "mycalendar@example.com",
-            "calendar_type": "2",
-            "api_type": "0",
-        },
-    },
-}
-
-checked_out_body = {
-    "event": "zoomroom.checked_out",
-    "event_ts": 1626230691572,
-    "payload": {
-        "account_id": "AAAAAABBBB",
-        "object": {
-            "id": "abcD3ojfdbjfg",
-            "room_name": "My Zoom Room",
-            "calendar_name": "mycalendar@example.com",
-            "email": "jchill@example.com",
-            "event_id": "AbbbbbGYxLTc3OTVkMzFmZDc0MwBGAAAAAAD48FI58voYSqDgJePOSZ",
-            "change_key": "DwAAABYAAABQ/N0JvB/FRqv5UT2rFfkVAAE2XqVw",
-            "resource_email": "zroom1@example.com",
-            "calendar_id": "mycalendar@example.com",
-            "calendar_type": "2",
-            "api_type": "0",
-        },
-    },
-}
-
-not_supported_event_body = {
-    "event": "not_supported_event",
-    "event_ts": 1626230691572,
-    "payload": {},
-}
-
-
-def test_url_validation():
+def test_url_validation(url_validation_body):
     app.dependency_overrides[
         verify_webhook_signature
     ] = override_verify_webhook_signature
@@ -75,7 +22,7 @@ def test_url_validation():
     assert response.status_code == 200
 
 
-def test_check_in():
+def test_check_in(checked_in_body):
     app.dependency_overrides[
         verify_webhook_signature
     ] = override_verify_webhook_signature
@@ -87,7 +34,7 @@ def test_check_in():
     assert response.status_code == 200
 
 
-def test_check_out():
+def test_check_out(checked_out_body):
     app.dependency_overrides[
         verify_webhook_signature
     ] = override_verify_webhook_signature
@@ -99,7 +46,19 @@ def test_check_out():
     assert response.status_code == 200
 
 
-def test_not_supported_event():
+def test_sensor_data(sensor_data_body):
+    app.dependency_overrides[
+        verify_webhook_signature
+    ] = override_verify_webhook_signature
+    response = client.post(
+        "api/v1/webhook",
+        json=sensor_data_body,
+    )
+
+    assert response.status_code == 200
+
+
+def test_not_supported_event(not_supported_event_body):
     app.dependency_overrides[
         verify_webhook_signature
     ] = override_verify_webhook_signature
