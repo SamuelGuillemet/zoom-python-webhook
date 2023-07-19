@@ -30,7 +30,7 @@ class Payload(BaseModel):
 
 
 class CheckedOutWebHook(BaseWebhookEvent):
-    """This is the schema for the request body of the webhook for the zoomroom.checked_in event.
+    """This is the schema for the request body of the webhook for the zoomroom.checked_out event.
 
     Args:
         WebhookEvent (WebhookEvent): The base webhook model for the schema.
@@ -38,7 +38,7 @@ class CheckedOutWebHook(BaseWebhookEvent):
 
     payload: Payload = Field(
         ...,
-        description="Contains a property with the plainToken value, the string to hash.",
+        description="Contains all the information about the Zoom Room that checked out.",
     )
 
 
