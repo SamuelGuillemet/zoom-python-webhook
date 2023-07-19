@@ -38,7 +38,7 @@ class CheckedInWebHook(BaseWebhookEvent):
 
     payload: Payload = Field(
         ...,
-        description="Contains a property with the plainToken value, the string to hash.",
+        description="Contains all the information about the Zoom Room that checked in.",
     )
 
 
