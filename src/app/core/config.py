@@ -18,7 +18,7 @@ class Settings(BaseSettings):
 
     API_V1_PREFIX: str = "/api/v1"
     ZOOM_WEBHOOK_SECRET_TOKEN: str
-    LOG_LEVEL: str
+    LOG_LEVEL: int
 
     model_config = SettingsConfigDict(case_sensitive=True)
 
@@ -38,7 +38,7 @@ class ConfigDevelopment(Settings):
     """
 
     ZOOM_WEBHOOK_SECRET_TOKEN: Optional[str] = None
-    LOG_LEVEL: str = "DEV"
+    LOG_LEVEL: int = logging.DEBUG
 
     model_config = SettingsConfigDict(case_sensitive=True, env_file=".env.development")
 
@@ -50,7 +50,7 @@ class ConfigProduction(Settings):
     """
 
     ZOOM_WEBHOOK_SECRET_TOKEN: Optional[str] = None
-    LOG_LEVEL: str = "PROD"
+    LOG_LEVEL: int = logging.INFO
 
     model_config = SettingsConfigDict(case_sensitive=True, env_file=".env.production")
 
@@ -63,7 +63,7 @@ class ConfigTest(Settings):
     """
 
     ZOOM_WEBHOOK_SECRET_TOKEN: str = TEST_ZOOM_WEBHOOK_SECRET_TOKEN
-    LOG_LEVEL: str = "TEST"
+    LOG_LEVEL: int = logging.DEBUG
 
 
 env = os.getenv("ENVIRONMENT", "development")

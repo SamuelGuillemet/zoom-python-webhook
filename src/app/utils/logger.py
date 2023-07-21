@@ -3,6 +3,7 @@
 import logging
 import sys
 from datetime import datetime
+from time import struct_time
 from typing import Optional
 
 from pytz import timezone, utc
@@ -10,7 +11,7 @@ from pytz import timezone, utc
 from app.core.config import settings
 
 
-def zurich_time(*args):  # pylint: disable=unused-argument
+def zurich_time(*args) -> struct_time:  # pylint: disable=unused-argument
     """
     Converts the current UTC time to the timezone of Zurich, Switzerland.
 
@@ -23,7 +24,7 @@ def zurich_time(*args):  # pylint: disable=unused-argument
     return converted.timetuple()
 
 
-def setup_logs(logger_name, to_stdout=True):
+def setup_logs(logger_name: str, to_stdout: bool = True):
     """
     Sets up the logger with the specified logger name and configures it to log to stdout if `to_stdout` is True.
     The logger's log level is set based on the `LOG_LEVEL` value in the application's settings.
@@ -34,11 +35,7 @@ def setup_logs(logger_name, to_stdout=True):
     """
     logger = logging.getLogger(logger_name)
 
-    if settings.LOG_LEVEL == "DEV" or settings.LOG_LEVEL == "TEST":
-        logger.setLevel(logging.DEBUG)
-
-    if settings.LOG_LEVEL == "PROD":
-        logger.setLevel(logging.INFO)
+    logger.setLevel(settings.LOG_LEVEL)
 
     formatter = logging.Formatter(
         "%(levelname)s | %(asctime)s | %(name)s | %(message)s | %(pathname)s:%(lineno)d | %(funcName)s()"
@@ -55,7 +52,7 @@ def setup_logs(logger_name, to_stdout=True):
 def configure_stdout_logging(
     logger: Optional[logging.Logger] = None,
     formatter: Optional[logging.Formatter] = None,
-    log_level="DEV",
+    log_level: int = logging.DEBUG,
 ):
     """
     Configures the logger to log to stdout with the specified logger, formatter and log level.
@@ -68,10 +65,7 @@ def configure_stdout_logging(
     stream_handler = logging.StreamHandler(stream=sys.stdout)
 
     stream_handler.setFormatter(formatter)
-    if log_level == "DEV" or log_level == "TEST":
-        stream_handler.setLevel(logging.DEBUG)
-    if log_level == "PROD":
-        stream_handler.setLevel(logging.INFO)
+    stream_handler.setLevel(log_level)
 
     if logger:
         logger.addHandler(stream_handler)
