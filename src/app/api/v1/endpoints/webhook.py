@@ -18,12 +18,6 @@ logger = logging.getLogger("app.api.v1.webhook")
 
 router = APIRouter(tags=["webhook"], prefix="/webhook")
 
-# Common responses for the error cases.
-responses = {
-    403: {"description": "Webhook signature verification failed.", "model": ErrorModel},
-    501: {"description": "Webhook event not supported.", "model": ErrorModel},
-}
-
 # Load all webhook components and create a list of tuples containing
 # the event name, handler function, and response model.
 components_tuple: list[
@@ -44,7 +38,13 @@ components_tuple: list[
     response_model=Union[
         tuple(response_model for _, _, response_model in components_tuple)  # type: ignore
     ],
-    responses={**responses},
+    responses={
+        403: {
+            "description": "Webhook signature verification failed.",
+            "model": ErrorModel,
+        },
+        501: {"description": "Webhook event not supported.", "model": ErrorModel},
+    },
 )
 async def webhook_route(webhook_event: BaseWebhookEvent):
     """

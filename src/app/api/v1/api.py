@@ -1,15 +1,11 @@
 """ API v1 router. """
 
-import importlib
-
 from fastapi import APIRouter
 
 from app.api.v1 import endpoints
+from app.utils.load_submodules import load_submodules
 
-endpoints_module = [
-    importlib.import_module(f"app.api.v1.endpoints.{module}")
-    for module in endpoints.__all__
-]
+endpoints_module = load_submodules(endpoints)
 
 api_v1_router = APIRouter()
 
