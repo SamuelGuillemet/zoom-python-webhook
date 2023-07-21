@@ -21,7 +21,7 @@ def sensor_data_handler(body: dict):
         logger.warning("No sensor data in the payload.")
         return ResponseWebhookSensorData(message="No sensor data in the payload.")
 
-    for _, sensor in enumerate(sensor_data.payload.object.sensor_data):
+    for sensor in sensor_data.payload.object.sensor_data:
         logger.info(
             "%s | %s | %s | %s | %s | %s | %s | %s",
             sensor_data.event,
