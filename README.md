@@ -2,13 +2,12 @@
 
 [![Python tests](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/python-tests.yml/badge.svg)](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/python-tests.yml)
 [![pre-commit](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/pre-commit.yaml)
-[![CodeQL](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/codeql-analysis.yml)
 [![codecov](https://codecov.io/gh/SamuelGuillemet/zoom-python-webhook/branch/main/graph/badge.svg)](https://codecov.io/gh/SamuelGuillemet/zoom-python-webhook)
 [![Deploy](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/build.yml/badge.svg)](https://github.com/SamuelGuillemet/zoom-python-webhook/actions/workflows/build.yml)
 
 This is a simple FastAPI app that handles Zoom Webhooks.
 
-The goal of this app is to provide a simple way to handle Zoom Webhooks and to provide a simple way to extend the app with custom handlers.
+The goal of this app is to handle Zoom Webhooks and to provide a simple way to extend the app with custom handlers.
 
 ---
 
