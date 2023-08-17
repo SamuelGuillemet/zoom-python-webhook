@@ -24,17 +24,8 @@
   "python.analysis.inlayHints.callArgumentNames": true,
   "python.analysis.inlayHints.variableTypes": true,
   "python.analysis.inlayHints.functionReturnTypes": true,
-  "python.autoComplete.extraPaths": [
-    "./src"
-  ],
   "editor.formatOnSave": true,
-  "python.formatting.provider": "black",
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintPath": ".venv/bin/pylint",
-  "python.linting.pylintArgs": [
+  "pylint.args": [
     "--load-plugins",
     "pylint_pydantic"
   ],
@@ -44,11 +35,19 @@
     "black"
   ],
   "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "tests",
+    "-vv",
+    "--cov=app",
+    "--cov-report=term-missing",
+    "--cov-report=html"
+  ],
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     },
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeLens": true
   },
   "search.exclude": {
     "**/dist": true,
@@ -56,8 +55,13 @@
   },
   "files.exclude": {
     "**/__pycache__": true,
-    ".pytest_cache": true,
-    ".mypy*": true,
-    ".coverage": true,
+    "**/.pytest_cache": true,
+    "**/.mypy*": true,
+    "**/.coverage": true,
+    "**/.coverage.*": true,
+    "**/node_modules/": true,
   },
+  "python.analysis.extraPaths": [
+    "./src"
+  ],
 }
