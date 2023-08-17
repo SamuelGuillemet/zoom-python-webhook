@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "zoom-python-webhook"
-version = "0.2.0"
+version = "0.2.1"
 description = "Fast API app for Zoom Webhook"
 authors = ["Samuel Guillemet <samuel.guillemet@telecom-sudparis.eu>"]
 readme = "README.md"
-packages = [{include = "app", from = "src"}]
+packages = [{ include = "app", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-fastapi = {extras = ["all"], version = "^0.101.1"}
+fastapi = { extras = ["all"], version = "^0.101.1" }
 pydantic-settings = "^2.0.2"
 pytz = "^2023.3"
 
