@@ -10,6 +10,12 @@ This is a simple FastAPI app that handles Zoom Webhooks.
 
 The goal of this app is to provide a simple way to handle Zoom Webhooks and to provide a simple way to extend the app with custom handlers.
 
+---
+
+If you want to know more about the architecture of this app, you can read the [architecture.md](docs/architecture.md) file.
+
+---
+
 ## Installation
 
 ```bash
@@ -23,15 +29,17 @@ $ git clone https://github.com/SamuelGuillemet/zoom-python-webhook.git
 
 ## How to configure the environment variables
 
-### Defining your env variables
+The `.env.sample` file contains the list of all the environment variables that you can define.
 
-If your are in development mode, you can define the following variables in your `.env.development` file:
+### Production
+
+If your are in production mode, you can define the following variables in your `.env.production` file or directly in your environment variables:
 
 - `ZOOM_WEBHOOK_SECRET_TOKEN` : The secret token that you have defined in your Zoom App.
 
-### Defining your env variables in production
+### Development
 
-If your are in production mode, you can define the following variables in your `.env.production` file or directly in your environment variables:
+If your are in development mode, you can define the following variables in your `.env.development` file:
 
 - `ZOOM_WEBHOOK_SECRET_TOKEN` : The secret token that you have defined in your Zoom App.
 
@@ -69,36 +77,25 @@ Source: https://python-poetry.org/docs/#installing-with-the-official-installer
 
 Then, you can install the dependencies with the following command:
 
-#### Virtual env if you use Conda
+**Virtual environment if you use Conda**
 
-Start the conda env:
+1. Start the conda environment.
+2. Create a virtual environment under the `.venv` folder.
+3. Deactivate the conda environment.
 
 ```bash
 $ conda activate your_env
-```
-
-Create a virtual env under the `.venv` folder:
-
-```bash
 $ python -m venv .venv
-```
-
-Deactivate the conda env:
-
-```bash
 $ conda deactivate
 ```
 
-#### Install the dependencies
+---
+
+#### Install the dependencies :
 
 ```bash
 $ poetry install
-```
-
-Activate the virtual env:
-
-```bash
-$ source .venv/bin/activate
+$ source .venv/bin/activate # or poetry shell
 ```
 
 #### Install the pre-commit Git hook
@@ -120,6 +117,7 @@ $ uvicorn src.app.main:app --reload --reload-dir=./src/app
 - `endpoint.url_verification`
 - `zoomroom.checked_in`
 - `zoomroom.checked_out`
+- `zoomroom.sensor_data`
 
 ## How to add a new handler
 
@@ -127,18 +125,18 @@ $ uvicorn src.app.main:app --reload --reload-dir=./src/app
 2. The structure of the component should be the following:
 
 ```bash
-├── your_component
-│         ├── __init__.py
-│         ├── handler.py
-│         └── schema.py
+└── your_component
+         ├── __init__.py
+         ├── handler.py
+         └── schema.py
 ```
 
 3. In the `handler.py` file, you should create a new function that will handle the event. The function should be take the following arguments:
    - body (dict): The body of the request
-4. In the `schema.py` file, you should create 2 new Pydantic models that will be used to validate the body of the request and the response of the handler function.
+4. In the `schema.py` file, you should create 2 new Pydantic models:
    - The first model should be used to validate the body of the request.
    - The second model should be used to validate the response of the handler function.
-5. In the `__init__.py` file, you must have the following code:
+5. In the `__init__.py` file, you **must** put the following code:
 
 ```python
 from .handler import your_handler_function
