@@ -9,7 +9,7 @@ packages = [{ include = "app", from = "src" }]
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = { extras = ["all"], version = "^0.109.2" }
-pydantic-settings = "^2.1.0"
+pydantic-settings = "^2.2.0"
 pytz = "^2023.3"
 
 
